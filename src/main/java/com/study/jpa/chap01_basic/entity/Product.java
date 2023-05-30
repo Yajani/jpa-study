@@ -1,11 +1,11 @@
 package com.study.jpa.chap01_basic.entity;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Setter @Getter
 @ToString @EqualsAndHashCode
@@ -17,14 +17,28 @@ import javax.persistence.Table;
 public class Product {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "prod_id")
-    private int id;
+    private long id;
 
     @Column(name = "prod_nm", nullable = false, length = 30)
     private String name;
 
-    private int price;
+    @Builder.Default
+    private int price = 0;
+
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime createdDate;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedDate;
 
 
-
+    public enum Category {
+        FOOD, FASHION, ELECTRONIC
+    }
 }
