@@ -1,5 +1,6 @@
 package com.study.jpa.chap02_querymethod.repository;
 
+import com.study.jpa.chap02_querymethod.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

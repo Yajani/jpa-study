@@ -13,29 +13,31 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "tbl_product")
+@Table(name = "tbl_product") //테이블명
 public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id //pk지정
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //mariadb 나 mysql에서 쓴다.
+    // db에서 쓰고싶은 컬럼명
     @Column(name = "prod_id")
     private long id;
 
-    @Column(name = "prod_nm", nullable = false, length = 30)
+    //unique제약조건 unique = true
+    @Column(name = "prod_nm", nullable = false, length = 30) // notnull ,varchar(30)
     private String name;
 
-    @Builder.Default
-    private int price = 0;
+    @Builder.Default //빌더를 쓰면 붙여줘야 한다
+    private int price = 0; //기본값 설정
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)  //db에 저장될때 스트링타입으로 저장된다
     private Category category;
 
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(updatable = false) //수정불가 옵션
     private LocalDateTime createdDate;
 
-    @UpdateTimestamp
-    private LocalDateTime updatedDate;
+    @UpdateTimestamp // 자동으로 시간이 저장된다.
+     private LocalDateTime updatedDate;
 
 
     public enum Category {

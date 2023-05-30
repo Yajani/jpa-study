@@ -16,8 +16,8 @@ import static com.study.jpa.chap01_basic.entity.Product.Category.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@Transactional
-//@Rollback(false)
+@Transactional //spring꺼
+//@Rollback(false) //롤백 취소 실제 실무에서는 롤백 트루
 class ProductRepositoryTest {
 
     @Autowired
