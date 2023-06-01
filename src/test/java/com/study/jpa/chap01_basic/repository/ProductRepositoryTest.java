@@ -1,6 +1,7 @@
 package com.study.jpa.chap01_basic.repository;
 
 import com.study.jpa.chap01_basic.entity.Product;
+import org.hibernate.boot.TempTableDdlTransactionHandling;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ class ProductRepositoryTest {
     @Autowired
     ProductRepository productRepository;
 
-    @BeforeEach // 테스트 돌리기 전에 실행
+    @BeforeEach // 테스트 돌리기 전에 실행됨
     void insertDummyData() {
         //given
         Product p1 = Product.builder()
@@ -51,6 +52,8 @@ class ProductRepositoryTest {
         Product saved3 = productRepository.save(p3);
         Product saved4 = productRepository.save(p4);
     }
+
+
 
     @Test
     @DisplayName("상품 4개를 데이터베이스에 저장해야 한다.")
@@ -101,6 +104,7 @@ class ProductRepositoryTest {
         Optional<Product> product
                 = productRepository.findById(id);
         //then
+        //만약에 존재한다면 ifPresent
         product.ifPresent(p -> {
             assertEquals("구두", p.getName());
         });
@@ -130,7 +134,7 @@ class ProductRepositoryTest {
         });
 
         //then
-        assertTrue(product.isPresent());
+        assertTrue(product.isPresent()); //존재하는지를 확인 (isPresent)
 
         Product p = product.get();
         assertEquals("짜장면", p.getName());
