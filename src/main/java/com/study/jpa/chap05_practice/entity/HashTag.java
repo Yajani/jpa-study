@@ -14,14 +14,15 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tbl_hash_tag")
 public class HashTag {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tag_no")
     private Long id;
-    private String tagName; //해시태그 이름
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    private String tagName; // 해시태그 이름
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "post_no")
-    private Post post; //원본게새물의 정보를 가져감
-
+    private Post post;
 }
