@@ -17,9 +17,10 @@ import java.time.LocalDateTime;
 public class Product {
 
     @Id //pk지정
+    //AUTO_INCREMENT 지정
     @GeneratedValue(strategy = GenerationType.IDENTITY) //mariadb 나 mysql에서 쓴다.
     // db에서 쓰고싶은 컬럼명
-    @Column(name = "prod_id")
+    @Column(name = "prod_id") //컬럼명을 바꾸거나 할때 지정한다 !!!!
     private long id;
 
     //unique제약조건 unique = true
@@ -29,7 +30,7 @@ public class Product {
     @Builder.Default //빌더를 쓰면 붙여줘야 한다
     private int price = 0; //기본값 설정
 
-    @Enumerated(EnumType.STRING)  //db에 저장될때 스트링타입으로 저장된다
+    @Enumerated(EnumType.STRING)  //db에 저장될때 스트링타입으로 저장되게하려면 붙여야한다
     private Category category;
 
     @CreationTimestamp
@@ -43,4 +44,5 @@ public class Product {
     public enum Category {
         FOOD, FASHION, ELECTRONIC
     }
+
 }

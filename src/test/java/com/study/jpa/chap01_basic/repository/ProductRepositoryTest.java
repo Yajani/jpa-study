@@ -47,7 +47,7 @@ class ProductRepositoryTest {
                 .category(FOOD)
                 .build();
         //when
-        Product saved1 = productRepository.save(p1);
+        Product saved1 = productRepository.save(p1); //저장저장
         Product saved2 = productRepository.save(p2);
         Product saved3 = productRepository.save(p3);
         Product saved4 = productRepository.save(p4);
@@ -74,7 +74,7 @@ class ProductRepositoryTest {
     @DisplayName("id가 2번인 데이터를 삭제해야 한다.")
     void testRemove() {
         //given
-        long id = 2L;
+        long id = 2L; //2번라인
         //when
         productRepository.deleteById(id);
         //then
@@ -88,9 +88,9 @@ class ProductRepositoryTest {
         //when
         List<Product> products = productRepository.findAll();
         //then
-        products.forEach(System.out::println);
+        products.forEach(System.out::println); //=> 보통 실무에선 잘 안찍는다
 
-        assertEquals(4, products.size());
+        assertEquals(4, products.size()); //사이즈가 4라면
 
     }
 
@@ -114,7 +114,7 @@ class ProductRepositoryTest {
         System.out.println("foundProduct = " + foundProduct);
     }
 
-    @Test
+    @Test //수정
     @DisplayName("2번 상품의 이름과 가격을 변경해야 한다.")
     void testModify() {
         //given
@@ -128,8 +128,8 @@ class ProductRepositoryTest {
         Optional<Product> product = productRepository.findById(id);
         product.ifPresent(p -> {
             p.setName(newName);
-            p.setPrice(newPrice);
-
+            p.setPrice(newPrice);//수정
+            //다시 save(저장)
             productRepository.save(p);
         });
 

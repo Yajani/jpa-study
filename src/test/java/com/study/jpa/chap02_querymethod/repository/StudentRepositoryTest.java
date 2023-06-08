@@ -52,9 +52,11 @@ class StudentRepositoryTest {
         //given
         String name = "춘식이";
         //when
+        //name으로 조회를 할 수 없기 때문에 쿼리문을 만들어줘야한다.
+        //조회할때는 findBy필드명
         List<Student> students = studentRepository.findByName(name);
         //then
-        assertEquals(1, students.size());
+        assertEquals(1, students.size()); //한명이니까!
 
         System.out.println("students.get(0) = " + students.get(0));
     }
@@ -68,7 +70,7 @@ class StudentRepositoryTest {
         //when
         List<Student> students = studentRepository.findByCityAndMajor(city, major);
         //then
-        assertEquals(1, students.size());
+        assertEquals(1, students.size()); //갯수는 1개 부산시면서 수학교육과
         assertEquals("춘신춘왕", students.get(0).getName());
 
         System.out.println("students.get(0) = " + students.get(0));
@@ -79,8 +81,10 @@ class StudentRepositoryTest {
     void testFindByMajorContaining() {
         //given
         String major = "수학";
+
         //when
         List<Student> students = studentRepository.findByMajorContaining(major);
+
         //then
         assertEquals(2, students.size());
 
@@ -144,7 +148,7 @@ class StudentRepositoryTest {
         //then
         List<Student> students = studentRepository.findByName(name);
 
-        assertEquals(0, students.size());
+        assertEquals(0, students.size()); //삭제 했을때 갯수는 0개!!!!
     }
 
 }
