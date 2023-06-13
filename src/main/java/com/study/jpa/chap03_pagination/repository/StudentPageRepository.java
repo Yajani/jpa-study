@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface StudentPageRepository
-        extends JpaRepository<Student, String> {
+        extends JpaRepository<Student, String> { //실제로는 두개 만들필요없고 화면에다가 한꺼번에 다 하면된다.
 
 
     // 학생 조건없이 전체조회 페이징 (기본기능 - 안만들어도됨)

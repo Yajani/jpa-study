@@ -44,7 +44,7 @@ class StudentPageRepositoryTest {
     void testBasicPagination() {
         //given
         int pageNo = 1;
-        int amount = 10;
+        int amount = 10; //1페이지에서 10개씩 보기
 
         // 페이지 정보 생성
         // 페이지번호가 zero-based
